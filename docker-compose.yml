@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  CWA:
+    build: .
+    image: cloudwatch_agent:0.6
+    container_name: cwa
+    volumes:
+      - ./credentials:/root/.aws/credentials
+      - ./config.json:/opt/aws/amazon-cloudwatch-agent/bin/config.json
+      - ./logs.txt:/home/logs.txt
+      - ./Makefile:/home/Makefile
+    working_dir: /home
+    privileged: true
